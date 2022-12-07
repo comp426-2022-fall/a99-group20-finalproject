@@ -1,7 +1,7 @@
 {
   "name": "a99-group20-finalproject",
   "version": "0.0.1",
-  "description": "A99 Group 20 Final Project - Nutrution",
+  "description": "A99 Group 20 Final Project - Nutrition",
   "main": "server.js",
   "directories": {
     "doc": "docs"
