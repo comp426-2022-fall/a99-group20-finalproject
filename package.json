@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A99 Group 20 Final Project - Nutrition",
   "main": "server.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
