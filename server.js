@@ -6,11 +6,6 @@ import express from 'express'
 import fs from 'fs'
 import path from 'path'
 import {fileURLToPath} from 'url';
-import Database from 'better-sqlite3';
-
-//creating database connection
-const db = new Database('nutrition.db');
-db.pragma('journal_mode = WAL');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,11 +28,13 @@ app.get('/app/login', (req, res) => {
     res.sendFile(__dirname + '/views/login.html');
 });
 
+// create account endpoint
 app.get('/app/create_acc', (req, res) => {
     // this should redirect to a html homepage
     res.sendFile(__dirname + '/views/create_acc.html');
 });
 
+// delete account endpoint
 app.get('/app/delete_acc', (req, res) => {
     // this should redirect to a html homepage
     res.sendFile(__dirname + '/views/delete_acc.html');
