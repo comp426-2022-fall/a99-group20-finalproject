@@ -1,4 +1,4 @@
-import {database} from 'better-sqlite3';
+import Database from 'better-sqlite3';
 
 //create database connection
 const nutritionDB = new Database('nutrition.db');
@@ -11,7 +11,7 @@ let row = stmt.get();
 if (row === undefined) {
         console.log('Nutrition database appears to be empty. Creating Nutrition database');
 
-        const = sqlInit = `
+        const sqlInit = `
         CREATE Table nutritionInfo (
                 calories INTEGER, protein INTEGER, carbohydrate INTEGER, fat INTEGER);
                 INSERT INTO nutritionInfo (calories, protein, carbohydrate, fat) VALUES (?, ?, ?, ?)

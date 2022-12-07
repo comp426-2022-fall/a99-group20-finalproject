@@ -1,4 +1,4 @@
-import {database} from 'better-sqlite3';
+import Database from 'better-sqlite3';
 
 //create database connection
 const interactionDB = new Database('interaction.db');
@@ -11,13 +11,13 @@ let row = stmt.get();
 if (row === undefined) {
         console.log('Interaction database appears to be empty. Creating Interaction database');
 
-        const = sqlInit = `
-        CREATE Table nutritionInfo (
-                calories INTEGER, protein INTEGER, carbohydrate INTEGER, fat INTEGER);
-                INSERT INTO nutritionInfo (calories, protein, carbohydrate, fat) VALUES (?, ?, ?, ?)
+        const sqlInit = `
+        CREATE Table interactionInfo (
+                timeStamp INTEGER);
+                INSERT INTO interactionInfo (timeStamp) VALUES (?);
                 `;
         interactionDB.exec(sqlInit);
-        console.log('interactionInfo database has been initialized with a new table and one entry containing ');
+        console.log('interactionInfo database has been initialized with a new table and one entry containing timeStamp');
 } else {
         console.log('Interaction Database exists.');
 }

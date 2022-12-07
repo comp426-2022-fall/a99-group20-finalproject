@@ -1,4 +1,4 @@
-import {database} from 'better-sqlite3';
+import Database from 'better-sqlite3';
 
 //create database connection
 const userDB = new Database('user.db');
@@ -10,7 +10,7 @@ let row = stmt.get();
 if (row === undefined) {
 	console.log('User database appears to be empty. Creating User database');
 
-	const = sqlInit = `
+	const sqlInit = `
 	CREATE Table userInfo (
 		id INTEGER PRIMARY KEY, username TEXT, password TEXT);
 		INSERT INTO userInfo (username, password) VALUES (?, ?)
