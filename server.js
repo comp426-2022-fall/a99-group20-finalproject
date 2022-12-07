@@ -6,10 +6,10 @@ import express from 'express'
 import fs from 'fs'
 import path from 'path'
 import {fileURLToPath} from 'url';
-import {database} from 'better-sqlite3';
+import Database from 'better-sqlite3';
 
 //creating database connection
-const db = new database('nutrition.db');
+const db = new Database('nutrition.db');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
