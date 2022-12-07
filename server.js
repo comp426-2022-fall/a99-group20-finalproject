@@ -14,9 +14,9 @@ const args = minimist(process.argv.slice(2))
 const port = args.port || 5000
 const app = express()
 
-var nutdatabase = require.("./databases/nutritionDatabase.js");
-var userdatabase = require("./databases/userDatabase.js");
-var interactiondatabase = require("./databases/interactionDatabase.js");
+const nutdatabase = require(`./databases/nutritionDatabase.js`);
+const userdatabase = require(`./databases/userDatabase.js`);
+const interactiondatabase = require(`./databases/interactionDatabase.js`);
 
 app.use(express.urlencoded({extended: true}));
 
@@ -46,8 +46,9 @@ app.get('/app/delete_acc', (req, res) => {
 
 app.post("/app/new/user", (req,res,next) => {
 
-	const stat = database.prepare('INSERT INTO userInfo(user, password) VALUES (?,?)').run(req.body.user, md5(req.body.password);
+	const stat = userdatabase.prepare(`INSERT INTO userInfo(user, password) VALUES (?,?)`).run(req.body.user, md5(req.body.password));
 	res.status(200).json({"message": "1 record created: ID (201)"});
+});
 
 
 // page not found endpoint
