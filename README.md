@@ -1,12 +1,8 @@
 # a99 Final Project
 
-## Summary 
+## Hungry Tracks 
 
-COMP426 final project template boilerplate.
-All your code and documentation goes here.
-Change this text to be a brief description of your final project.
-Put the name of your project in the header above.
-You will change everything below to be the main technical documentation, as outlined below.
+Made by Andrew Best, Corbin Jude, and Evan Parke, Hungry Tracks is an all-in-one stop for log their nutrional statistics. Users will be able to make an individual user account where they will be able to log meals and keep track of calories, portiens, carbohydrates, and more. They will be able to access their meal history so they can see changes in their diet over time. Made using NODE/EXPRESS API.
 
 ## First steps
 
