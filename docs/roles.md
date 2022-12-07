@@ -1,19 +1,19 @@
 # Roles
 
-1. Review Manager
+1. Review Manager: Corbin Jude
 
-2. Plan Manager
+2. Plan Manager: Andrew Best
 
-3. Documentation Manager
+3. Documentation Manager: Andrew Best
 
-4. Release Manager
+4. Release Manager: Evan Parke
 
-5. Project Manager
+5. Project Manager: Evan Parke
 
-6. Front End Lead
+6. Front End Lead: Evan Parke
 
-7. Back End Lead
+7. Back End Lead: Corbin Jude
 
-8. Database Lead
+8. Database Lead: Andrew Best
 
-9. Design Lead
+
