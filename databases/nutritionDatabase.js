@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 
 //create database connection
-const nutritionDB = new Database('nutrition.db');
+export const nutritionDB = new Database('nutrition.db');
 nutritionDB.pragma('journal_mode = WAL');
 
 //check if nutrition database exists
@@ -22,4 +22,3 @@ if (row === undefined) {
         console.log('Nutrition Database exists.');
 }
 
-module.exports = nutritionDB;

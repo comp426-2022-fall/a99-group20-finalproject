@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 
 //create database connection
-const interactionDB = new Database('interaction.db');
+export const interactionDB = new Database('interaction.db');
 interactionDB.pragma('journal_mode = WAL');
 
 //check if interaction database exists
@@ -22,4 +22,4 @@ if (row === undefined) {
         console.log('Interaction Database exists.');
 }
 
-module.exports = interactionDB;
+

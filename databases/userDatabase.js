@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 
 //create database connection
-const userDB = new Database('user.db');
+export const userDB = new Database('user.db');
 userDB.pragma('journal_mode = WAL');
 
 const stmt = userDB.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='userInfo';`);
@@ -21,4 +21,3 @@ if (row === undefined) {
 	console.log('User Database exists.');
 }
 
-module.exports = userDB;
