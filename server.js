@@ -22,6 +22,9 @@ app.get('/app/', (req, res) => {
     res.sendFile(__dirname + '/views/home.html');
 });
 
+app.get('*', (req, res) => {
+    res.send("404 NOT FOUND")
+})
 
 
 app.listen(port, () => {
