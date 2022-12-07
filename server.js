@@ -14,3 +14,7 @@ app.use(express.urlencoded({extended: true}));
 app.get('/app/', (req, res) => {
 	res.status(200).send("200 OK")
 });
+
+app.listen(port, () => {
+	console.log("Server listening on port " + port)
+})
