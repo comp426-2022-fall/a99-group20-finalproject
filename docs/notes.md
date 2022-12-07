@@ -6,4 +6,8 @@ User can access their meal history.
 
 We'll have a database that contains user information. 
 
+- Home page. Button to take user to login page where user can login. 
+- Then main page where user can log their meals. 
+- Also user can access their log history, etc. 
+
 ...
