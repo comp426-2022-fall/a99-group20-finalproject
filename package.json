@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/comp426-2022-fall/a99-group20-finalproject/issues"
   },
-  "homepage": "https://github.com/comp426-2022-fall/a99-group20-finalproject#readme"
+  "homepage": "https://github.com/comp426-2022-fall/a99-group20-finalproject#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  }
 }
