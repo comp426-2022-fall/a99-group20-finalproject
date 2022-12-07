@@ -32,6 +32,19 @@ app.get('/app/login', (req, res) => {
     res.sendFile(__dirname + '/views/login.html');
 });
 
+app.get('/app/create_acc', (req, res) => {
+    // this should redirect to a html homepage
+    res.sendFile(__dirname + '/views/create_acc.html');
+});
+
+app.get('/app/delete_acc', (req, res) => {
+    // this should redirect to a html homepage
+    res.sendFile(__dirname + '/views/delete_acc.html');
+});
+
+
+
+
 // page not found endpoint
 app.get('*', (req, res) => {
     res.send("404 NOT FOUND")
