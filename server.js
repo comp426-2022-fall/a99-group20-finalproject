@@ -22,6 +22,13 @@ app.get('/app/', (req, res) => {
     res.sendFile(__dirname + '/views/home.html');
 });
 
+// login endpoint
+app.get('/app/login', (req, res) => {
+    // this should redirect to a html homepage
+    res.sendFile(__dirname + '/views/login.html');
+});
+
+// page not found endpoint
 app.get('*', (req, res) => {
     res.send("404 NOT FOUND")
 })
