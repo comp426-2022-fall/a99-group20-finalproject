@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended: true}));
 
 // root endpoint
 app.get('/app/', (req, res) => {
-    // this should rediecr to a html homepage
+    // this should redirect to a html homepage
     res.sendFile(__dirname + '/views/home.html');
 });
 
