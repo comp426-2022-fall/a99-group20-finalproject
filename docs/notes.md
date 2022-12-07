@@ -1,1 +1,9 @@
-Here is the notes and general documentation for our final project.
+# Here is the notes and general documentation for our final project:
+
+User has account and can log meals: enter calories, protiens, carbohydrates, etc. 
+
+User can access their meal history. 
+
+We'll have a database that contains user information. 
+
+...
