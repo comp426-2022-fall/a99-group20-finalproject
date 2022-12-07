@@ -10,6 +10,7 @@ import Database from 'better-sqlite3';
 
 //creating database connection
 const db = new Database('nutrition.db');
+db.pragma('journal_mode = WAL');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
