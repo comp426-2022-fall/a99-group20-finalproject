@@ -14,7 +14,7 @@ TODO: CLICK HERE
 1. Clone this repository to your local station
 2. Run `npm install` to install all required dependencies for the application. Verify that all dependencies were installed by viewing the package.json file and cross-checking with the dependencies listed below.
 3. Run `npm start` to start the server and all required systems for the application
-4. Go to `localhost:5000/` in a web browser to get to the application
+4. Go to `localhost:5000/app` in a web browser to get to the application
 
 ## Use Instructions
 Through this application users can:
