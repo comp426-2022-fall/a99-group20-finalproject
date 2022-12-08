@@ -78,6 +78,20 @@ app.post('/app/app/delete_acc', (req, res) => {
     res.sendFile(__dirname + '/views/delete_acc.html');
 });
 
+// logs meal
+app.post('/log_meal', (req, res) => {
+    const user = req.app.get('user');
+
+    const calories = req.body.calories
+    const protein = req.body.protein
+    const carbs = req.body.carbs
+    const fats = req.body.fats
+
+    const stmt = `INSERT INTO data (user, calories, protein, carbs, fats) VALUES ('${user}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
+    db.exec(stmt)
+
+})
+
 
 
 app.get('/app/users_db', (req, res) => {

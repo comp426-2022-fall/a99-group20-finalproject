@@ -1,5 +1,6 @@
 Congratulations. You have made new account.
 <form method="post" action="app/delete_acc">
+    <h2>Enter your username and password if you want to delete your account.</h2>
     <p>
         <label for="username">Username</label>
         <input type="text" name="username" id="username">
@@ -12,6 +13,31 @@ Congratulations. You have made new account.
 
     <p>
         <input type="submit" value="Delete account" class="login-btn">
+    </p>
+
+</form>
+
+<form method="post" action="/log_meal">
+    <h2>Log your meal here.</h2>
+    <p>
+        <label for="calories">calories</label>
+        <input type="number" name="calories" id="calories">
+      </p>
+      <p>
+        <label for="protien">protien</label>
+        <input type="number" name="protien" id="protien">
+      </p>
+      <p>
+        <label for="carbs">carbs</label>
+        <input type="number" name="carbs" id="carbs">
+      </p>
+      <p>
+        <label for="fats">fats</label>
+        <input type="number" name="fats" id="fats">
+      </p>
+
+    <p>
+        <input type="submit" value="Log" class="login-btn">
     </p>
 
 </form>
