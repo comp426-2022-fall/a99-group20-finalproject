@@ -23,8 +23,20 @@ db.pragma('journal_mode = WAL')
 
 // create tables
 const sqlInit = `CREATE TABLE users ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, pass VARCHAR );`
+try{
+    db.exec(sqlInit);
+} catch(error){  
+}
 const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER;`
+try{
+    db.exec(sqlInit2);
+} catch(error){  
+}
 const sqlInit3 = `CREATE TABLE logs ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, message VARCHAR, time VARCHAR);`
+try{
+    db.exec(sqlInit3);
+} catch(error){  
+}
 
 
 
@@ -49,12 +61,9 @@ app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
 
-
-
     const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
 
-    
 	res.sendFile(__dirname + '/views/new-acc-made.html');
 });
 
