@@ -8,7 +8,10 @@ Made by Andrew Best, Corbin Jude, and Evan Parke, Hungry Tracks is an all-in-one
 
 Click the link below to watch our demo video:
 
-TODO: CLICK HERE
+
+https://user-images.githubusercontent.com/69429387/206553174-79688924-aa17-4eb2-84a3-5dd589ee49a6.mp4
+
+
 
 ## Installation Instructions
 1. Clone this repository to your local station
