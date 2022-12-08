@@ -25,11 +25,11 @@ align-content: center;
 }
 
 .card{
-height: 560px;
+height: 500px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+background-color: rgba(0,0,0,0.3) !important;
 }
 .card-header h3{
 color: white;
@@ -66,7 +66,8 @@ color: white;
 		<div class="card">
 			<div class="card-header">
 				<h3>Create a New Account</h3>
-			<div class="card-body">
+			</div>
+		<div class="card-body">
     <form method="post" action="app/createacc" class ="form-container">
       <p>
         <label for="username">Username</label>
@@ -81,15 +82,17 @@ color: white;
       </p>
     </form>
 
-    <h2>Login</h2>
+    <div class="card-header">
+	    <h3>Login</h3>
+    </div>
     <form method="post" action="/login" class ="form-container">
       <p>
         <label for="username">Username</label>
-        <input type="text" name="username" id="username">
+        <input type="text" name="username" id="username" placeholder="username">
       </p>
       <p>
         <label for="password">Password</label>
-        <input type="PASSWORD"  name="password" id="password">
+        <input type="PASSWORD"  name="password" id="password" placeholder="password">
       </p>
       <p>
         <input type="submit" value="Login" class="login-btn">
