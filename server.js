@@ -61,6 +61,27 @@ app.get('/app/accmade', (req,res) => {
 	res.sendFile(_direname + '/views/new-acc-made.html');
 });
 
+
+app.post('/login', (req, res) => {
+    const user = req.body.username;
+    const pass = req.body.password;
+
+    const stmt = db.prepare(`SELECT * FROM users WHERE user='${user}' and pass='${pass}';`);
+    let row = stmt.get();
+
+    if (row === undefined) {
+        req.app.set('user', user);
+        req.app.set('pass', pass);
+        // redirect to bad login page. 
+    } else {
+        req.app.set('user', user);
+        req.app.set('pass', pass);
+        res.sendFile(__dirname + '/views/main.html')
+    }
+})
+
+
+// create account
 app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
@@ -99,6 +120,8 @@ app.post('/log_meal', (req, res) => {
 
 
 
+
+// access user database
 app.get('/app/users_db', (req, res) => {
     const stmt = db.prepare(`SELECT * FROM users;`);
     let all = stmt.all();
