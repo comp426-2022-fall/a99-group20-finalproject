@@ -45,21 +45,16 @@ try{
 
 
 // root endpoint
-app.get('/', (req, res) => {
+app.get('/app', (req, res) => {
     // this should redirect to a html homepage
     res.sendFile(__dirname + '/views/home.html');
 });
 
 
-// login endpoint
-app.get('/app/login', (req, res) => {
+// return home
+app.post('/app/home', (req, res) => {
     // this should redirect to a html homepage
-    res.sendFile(__dirname + '/views/login.html');
-});
-
-app.get('/app/accmade', (req,res) => {
-	//this should redirect to an html homepage
-	res.sendFile(_direname + '/views/new-acc-made.html');
+    res.sendFile(__dirname + '/views/main.html');
 });
 
 
@@ -121,6 +116,15 @@ app.post('/log_meal', (req, res) => {
 
     res.sendFile(__dirname + '/views/success_log.html')
 
+})
+
+app.post('/app/history', (req, res) => {
+    const user = req.app.get('user')
+    const stmt = db.prepare(`SELECT * FROM data WHERE user = '${req.app.get('user')}';`);
+    let data = stmt.all();
+    console.log(data)
+    res.sendFile(__dirname + '/views/history.html', {data: data})
+   
 })
 
 
