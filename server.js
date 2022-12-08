@@ -49,6 +49,8 @@ app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
 
+
+
     const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
 
