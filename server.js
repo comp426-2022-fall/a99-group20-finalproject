@@ -57,6 +57,12 @@ app.post('/app/home', (req, res) => {
     res.sendFile(__dirname + '/views/main.html');
 });
 
+// return home
+app.post('/app/', (req, res) => {
+    // this should redirect to a html homepage
+    res.sendFile(__dirname + '/views/home.html');
+});
+
 
 app.post('/login', (req, res) => {
     const user = req.body.username;
