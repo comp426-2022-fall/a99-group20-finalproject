@@ -18,6 +18,7 @@ import {nutritionDB} from './databases/nutritionDatabase.js';
 import {userDB} from './databases/userDatabase.js';
 import {interactionDB} from './databases/interactionDatabase.js';
 
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({extended: true}));
 
@@ -35,14 +36,14 @@ app.get('/app/login', (req, res) => {
 
 
 
-app.post('/app/createacc/', (req,res) => {
+app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
 
-	const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
-    db.exec(stmt)
-    res.render('/views/new_acc_made.html');
-	//res.sendFile(__dirname + '/views/new-acc-made.html')
+	//const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
+    //userDB.exec(stmt)
+    
+	res.sendFile(__dirname + '/views/new-acc-made.html')
 });
 
 // delete account endpoint
@@ -51,7 +52,16 @@ app.get('/app/delete_acc', (req, res) => {
     res.sendFile(__dirname + '/views/delete_acc.html');
 });
 
+app.get('/app/users_db', (req, res) => {
+    const stmt = userDB.prepare(`SELECT * FROM users;`);
+    let all = stmt.all();
 
+    if(all === undefined) {
+        res.send('nothing in db');
+    } else {
+        res.send(all);
+    }
+});
 
 // page not found endpoint
 app.get('*', (req, res) => {
