@@ -1,49 +1,41 @@
-# a99 Final Project
+# $\color[RGB]{245, 167, 32} Hungry$ $\color[RGB]{245, 167, 32} Tracks$: A Meal and Macro Tracker 
 
-## Hungry Tracks 
+
 
 Made by Andrew Best, Corbin Jude, and Evan Parke, Hungry Tracks is an all-in-one stop for log their nutrional statistics. Users will be able to make an individual user account where they will be able to log meals and keep track of calories, portiens, carbohydrates, and more. They will be able to access their meal history so they can see changes in their diet over time. Made using NODE/EXPRESS API.
 
-## First steps
+## Demo Video
 
-Other steps that you will need to take after your team has accepted the assignment:
+Click the link below to watch our demo video:
 
-1. Choose a license and update the LICENSE file accordingly. 
-2. Edit this README.md file and use it as the main location of your technical documentation with links out to information contained under `/docs/`.
-3. Create a `/docs/` directory for more elaborate documentation of your API, planning notes, etc.
-4. Make sure that all of your team members have access to the repository as administrators.
-5. Create a project under the **Projects** tab. Use this to manage your planning. Create a To-do list, etc. Explore the tools available and user them to manage your project.
-7. Assign team roles and include a listing of those roles in this README.md file or in another file under `/docs/`.
-8. Then put your entire development workflow in this repository.
-9. Use **Pull requests** to propose changes and incorporate them into your code from various team members. 
-10. Use **Issues** to identify and track bugs and also to communicate about various aspects of the project.
+TODO: CLICK HERE
+
+## Installation Instructions
+1. Clone this repository to your local station
+2. Run `npm install` to install all required dependencies for the application. Verify that all dependencies were installed by viewing the package.json file and cross-checking with the dependencies listed below.
+3. Run `npm start` to start the server and all required systems for the application
+4. Go to `localhost:5000/` in a web browser to get to the application
+
+## Use Instructions
+Through this application users can:
+* register an account
+* delete their account
+* login to the app
+* log their meals, macronutrients,  and calories
+* view past logs made
+
+## Dependencies Needed
+* better-sqlite3 (8.0.1)
+* body-parser (1.20.1)
+* ejs (3.1.8)
+* express (4.18.2)
+* html (1.0.0)
+* minimist (1.2.7)
+* morgan (1.10.0)
 
 ## Team mangement
-
-Plan to meet with your team ASAP.
-Talk through identifying roles within your team.
-
-Try to figure out what each of you are good at/enjoy doing and try to work out roles that incorporate that.
-
-Some basic roles you will want to consider:
-
-1. A review manager - someone to review pull requests and merge or reject them and manage the related discussions
-2. A plan manager - someone to keep an eye on the overall plan and keep the project tab/to-do list up to date
-3. A documentation manager - someone to keep the documentation in order and identify what is missing and needs to be documented
-4. A release manager - someone to manage the packaging and release process for your prototype package
-5. A project manager - someone keeping track of all the moving parts and make sure that everything that needs to happen is happening.
-5. Roles for team members to take charge or different parts of the project. Possible roles:
-    1. Front end lead
-    2. Back end lead
-    3. Database lead
-    4. Design lead
-    5. Etc.
-
-You will notice that there are more roles than people in your group.
-That is because you will all be doing a hybrid job of managing a thing while working on other things.
-
-## Assignment instructions
-
-And that is about all you need to get started.
-
-Good skill and be creative!
+```
+- Andrew Best: Back end lead, API lead, project manager 
+- Evan Parke: Front end lead, Design lead 
+- Corbin Jude: Database lead, documentation manager
+```
