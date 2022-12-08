@@ -33,9 +33,13 @@ Through this application users can:
 * minimist (1.2.7)
 * morgan (1.10.0)
 
+## Endpoint Descriptions
+End points descriptions are listed in `API.md` in the `docs` directory.
+
 ## Team mangement
 ```
-- Andrew Best: Back end lead, API lead, project manager 
-- Evan Parke: Front end lead, Design lead 
-- Corbin Jude: Database lead, documentation manager
+- Andrew Best: Database lead, Plan manager, Project manager 
+- Evan Parke: Front end lead, Design lead, Release manager 
+- Corbin Jude: Back end lead, Documentation manager, Review manager
 ```
+Roles are also specified in the `roles.md` file in the `docs` directory.
