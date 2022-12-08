@@ -122,9 +122,7 @@ app.post('/app/history', (req, res) => {
     const user = req.app.get('user')
     const stmt = db.prepare(`SELECT * FROM data WHERE user = '${req.app.get('user')}';`);
     let data = stmt.all();
-    console.log(data)
-    res.sendFile(__dirname + '/views/history.html', {data: data})
-   
+    res.json(data)
 })
 
 
