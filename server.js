@@ -16,7 +16,8 @@ const args = minimist(process.argv.slice(2))
 const port = args.port || 5000
 const app = express()
 app.use(express.urlencoded({extended: true}));
-
+//adding in the background image
+app.use(express.static(__dirname+'/views'));
 // create database
 const db = new Database('nutrition.db');
 db.pragma('journal_mode = WAL')
