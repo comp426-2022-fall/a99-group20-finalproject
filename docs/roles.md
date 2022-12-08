@@ -4,11 +4,11 @@
 
 2. Plan Manager: Andrew Best
 
-3. Documentation Manager: Andrew Best
+3. Documentation Manager: Corbin Jude
 
 4. Release Manager: Evan Parke
 
-5. Project Manager: Evan Parke
+5. Project Manager: Andrew Best
 
 6. Front End Lead: Evan Parke
 
