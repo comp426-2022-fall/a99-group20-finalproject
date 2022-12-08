@@ -33,10 +33,15 @@ app.get('/app/login', (req, res) => {
     res.sendFile(__dirname + '/views/login.html');
 });
 
-// create account endpoint
-app.get('/app/create_acc', (req, res) => {
-    // this should redirect to a html homepage
-    res.sendFile(__dirname + '/views/create_acc.html');
+
+
+app.post('/app/createacc/', (req,res) => {
+    const user = req.body.username;
+    const pass = req.body.password;
+
+	const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
+    db.exec(stmt)
+	res.sendFile(__dirname + '/views/new-acc-made')
 });
 
 // delete account endpoint
@@ -45,10 +50,7 @@ app.get('/app/delete_acc', (req, res) => {
     res.sendFile(__dirname + '/views/delete_acc.html');
 });
 
-app.post("/app/new/user", (req,res,next) => {
-	const stat = userDB.prepare('INSERT INTO userInfo(user, password) VALUES (?,?)').run(req.body.user, md5(req.body.password));
-	res.status(200).json({"message": "1 record created: ID (201)"});
-});
+
 
 // page not found endpoint
 app.get('*', (req, res) => {
