@@ -55,7 +55,7 @@ app.post('/app/createacc', (req,res) => {
     db.exec(stmt)
 
     
-	res.sendFile(__dirname + '/views/new-acc-made.html')
+	res.sendFile(__dirname + '/views/new-acc-made.html');
 });
 
 // delete account endpoint
