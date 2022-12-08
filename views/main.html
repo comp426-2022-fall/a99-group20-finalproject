@@ -13,31 +13,69 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles.css"> 
-<style>
-body{
-	background-color: LightGreen;
+  <title>Hungry Tracks</title>
+  <style>
+   body {
+	   background: url('images/background.jpg') no-repeat, center, center;
+	   background-size: cover;
+   }
+.container{
+height: 100%;
+align-content: center;
 }
-</style>
+
+.card{
+height: 700px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.3) !important;
+}
+.card-header h3{
+color: white;
+}
+label{
+	color: white;
+	display: inline-block;
+	text-align: right;
+}
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+h3{
+	color: white;
+}
+  </style>
+  <div class="container">
+	  <div class="d-flex justify-content-center h-100">
+		  <div class="card">
+			  <div class="card-header">
+				  <h3>Log Your Meal Here</h3>
+			  </div>
+			  <div class="card-body">
 <form method="post" action="/log_meal">
-    <h2>Log your meal here.</h2>
+    <h3>Welcome to Hungry Tracks! Here is where you can go and put in description of your meal and the stats associated with it.</h3>
     <p>
-        <label for="description">description</label>
+        <label for="description">Description</label>
         <input type="text" name="description" id="description">
       </p>
     <p>
-        <label for="calories">calories</label>
+        <label for="calories">Calories   </label>
         <input type="number" name="calories" id="calories">
       </p>
       <p>
-        <label for="protein">protien</label>
+        <label for="protein">Protein    </label>
         <input type="number" name="protein" id="protein">
       </p>
       <p>
-        <label for="carbs">carbs</label>
+      <label for="carbs">Carbs      </label>
         <input type="number" name="carbs" id="carbs">
       </p>
       <p>
-        <label for="fats">fats</label>
+        <label for="fats">Fats      </label>
         <input type="number" name="fats" id="fats">
       </p>
 
@@ -51,7 +89,7 @@ body{
     <p>
       <input type="submit" value="Get meal history" class="login-btn">
     </p>
-  </form>
+</form></div>
 <SCRIPT>
 	function ShowAndHide(){
 			var sname = document.getElementByld('SectionName');
@@ -69,8 +107,4 @@ body{
     <p>
         <input type="submit" value="Delete account" class="login-btn">
     </p>
-    
-
-
 </form>
-
