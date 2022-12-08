@@ -16,4 +16,6 @@
 
 8. Database Lead: Andrew Best
 
+10. Design Manager: Evan Parke
+
 
