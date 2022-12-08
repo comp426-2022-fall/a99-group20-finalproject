@@ -7,6 +7,8 @@ import fs from 'fs'
 import path from 'path'
 import {fileURLToPath} from 'url';
 import Database from "better-sqlite3"
+import ejs from "ejs"
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +20,10 @@ const app = express()
 app.use(express.urlencoded({extended: true}));
 //adding in the background image
 app.use(express.static(__dirname+'/views'));
+
+app.set('view engine', 'ejs');
+app.engine('html', ejs.renderFile);
+
 // create database
 const db = new Database('nutrition.db');
 db.pragma('journal_mode = WAL')
@@ -58,7 +64,7 @@ app.post('/app/home', (req, res) => {
 });
 
 // return home
-app.post('/app/', (req, res) => {
+app.post('/app', (req, res) => {
     // this should redirect to a html homepage
     res.sendFile(__dirname + '/views/home.html');
 });
@@ -127,8 +133,8 @@ app.post('/log_meal', (req, res) => {
 app.post('/app/history', (req, res) => {
     const user = req.app.get('user')
     const stmt = db.prepare(`SELECT * FROM data WHERE user = '${req.app.get('user')}';`);
-    let data = stmt.all();
-    res.json(data)
+    let all_data = stmt.all();
+    res.render('history.html', {data: all_data})
 })
 
 

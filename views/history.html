@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+
 <h1> Nutrition History </h1>
 
-Here are all your past meal logs: 
-
-
+<body>
+    <div class="text-box">
+      <ul>
+      <%data.forEach(function(dat) {%>
+      <p>Calories: <%= dat.calories %></p>
+      <p>Protein: <%= dat.protein%></p>
+      <p>Carbs: <%= dat.carbs%></p>
+      <p>Fat: <%= dat.fats%></p><br>
+      <%});%>
+    </ul>
+   </body>
