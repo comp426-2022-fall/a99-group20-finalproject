@@ -41,7 +41,8 @@ app.post('/app/createacc/', (req,res) => {
 
 	const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
-	res.sendFile(__dirname + '/views/new-acc-made')
+    res.render('/views/new_acc_made.html');
+	//res.sendFile(__dirname + '/views/new-acc-made.html')
 });
 
 // delete account endpoint
