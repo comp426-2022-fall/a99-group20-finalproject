@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 const db = new Database('nutrition.db');
 db.pragma('journal_mode = WAL')
 
-console.log("hi")
+
 // create tables
 const sqlInit = `CREATE TABLE users ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, pass VARCHAR );`
 try{
@@ -72,6 +72,7 @@ app.post('/login', (req, res) => {
     if (row === undefined) {
         req.app.set('user', user);
         req.app.set('pass', pass);
+        res.sendFile(__dirname + '/views/bad_login.html')
         // redirect to bad login page. 
     } else {
         req.app.set('user', user);
@@ -88,6 +89,9 @@ app.post('/app/createacc', (req,res) => {
 
     const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
+
+    req.app.set('user', user);
+    req.app.set('pass', pass);
 
 	res.sendFile(__dirname + '/views/main.html');
 });
@@ -132,6 +136,19 @@ app.get('/app/users_db', (req, res) => {
         res.send(all);
     }
 });
+
+// access log database
+app.get('/app/logs_db', (req, res) => {
+    const stmt = db.prepare(`SELECT * FROM data;`);
+    let all = stmt.all();
+
+    if(all === undefined) {
+        res.send('nothing in db');
+    } else {
+        res.send(all);
+    }
+});
+
 
 // page not found endpoint
 app.get('*', (req, res) => {
