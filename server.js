@@ -21,17 +21,20 @@ app.use(express.urlencoded({extended: true}));
 const db = new Database('nutrition.db');
 db.pragma('journal_mode = WAL')
 
+console.log("hi")
 // create tables
 const sqlInit = `CREATE TABLE users ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, pass VARCHAR );`
 try{
     db.exec(sqlInit);
 } catch(error){  
 }
-const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER;`
+const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER);`
 try{
     db.exec(sqlInit2);
-} catch(error){  
 }
+catch(error){  
+}
+
 const sqlInit3 = `CREATE TABLE logs ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, message VARCHAR, time VARCHAR);`
 try{
     db.exec(sqlInit3);
@@ -89,6 +92,8 @@ app.post('/log_meal', (req, res) => {
 
     const stmt = `INSERT INTO data (user, calories, protein, carbs, fats) VALUES ('${user}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
     db.exec(stmt)
+
+    res.status("success log")
 
 })
 
