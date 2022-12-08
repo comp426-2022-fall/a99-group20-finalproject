@@ -6,21 +6,27 @@ import express from 'express'
 import fs from 'fs'
 import path from 'path'
 import {fileURLToPath} from 'url';
+import Database from "better-sqlite3"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// create app
 const args = minimist(process.argv.slice(2))
 const port = args.port || 5000
 const app = express()
-
-import {nutritionDB} from './databases/nutritionDatabase.js';
-import {userDB} from './databases/userDatabase.js';
-import {interactionDB} from './databases/interactionDatabase.js';
-
-app.set('views', path.join(__dirname, 'views'));
-
 app.use(express.urlencoded({extended: true}));
+
+// create database
+const db = new Database('nutrition.db');
+db.pragma('journal_mode = WAL')
+
+// create tables
+const sqlInit = `CREATE TABLE users ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, pass VARCHAR );`
+const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER;`
+const sqlInit3 = `CREATE TABLE logs ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, message VARCHAR, time VARCHAR);`
+
+
 
 // root endpoint
 app.get('/app/', (req, res) => {
@@ -42,12 +48,21 @@ app.get('/app/accmade', (req,res) => {
 app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
+<<<<<<< HEAD
 	//const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     //userDB.exec(stmt)
 	res.sendFile(__dirname + '/views/new-acc-made.html')
 	const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt);
     res.sendFile(__dirname + '/views/new-acc-made.html')
+=======
+
+    const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
+    db.exec(stmt)
+
+    
+	res.sendFile(__dirname + '/views/new-acc-made.html')
+>>>>>>> a833b3326ecda8e6f58369330c36b0f55bb99f0a
 });
 
 // delete account endpoint
