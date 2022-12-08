@@ -46,6 +46,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/home.html');
 });
 
+
 // login endpoint
 app.get('/app/login', (req, res) => {
     // this should redirect to a html homepage
