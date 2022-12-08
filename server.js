@@ -21,17 +21,20 @@ app.use(express.urlencoded({extended: true}));
 const db = new Database('nutrition.db');
 db.pragma('journal_mode = WAL')
 
+console.log("hi")
 // create tables
 const sqlInit = `CREATE TABLE users ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, pass VARCHAR );`
 try{
     db.exec(sqlInit);
 } catch(error){  
 }
-const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER;`
+const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER);`
 try{
     db.exec(sqlInit2);
-} catch(error){  
 }
+catch(error){  
+}
+
 const sqlInit3 = `CREATE TABLE logs ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, message VARCHAR, time VARCHAR);`
 try{
     db.exec(sqlInit3);
@@ -58,6 +61,27 @@ app.get('/app/accmade', (req,res) => {
 	res.sendFile(_direname + '/views/new-acc-made.html');
 });
 
+
+app.post('/login', (req, res) => {
+    const user = req.body.username;
+    const pass = req.body.password;
+
+    const stmt = db.prepare(`SELECT * FROM users WHERE user='${user}' and pass='${pass}';`);
+    let row = stmt.get();
+
+    if (row === undefined) {
+        req.app.set('user', user);
+        req.app.set('pass', pass);
+        // redirect to bad login page. 
+    } else {
+        req.app.set('user', user);
+        req.app.set('pass', pass);
+        res.sendFile(__dirname + '/views/main.html')
+    }
+})
+
+
+// create account
 app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
@@ -90,10 +114,14 @@ app.post('/log_meal', (req, res) => {
     const stmt = `INSERT INTO data (user, calories, protein, carbs, fats) VALUES ('${user}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
     db.exec(stmt)
 
+    res.sendFile(__dirname + '/views/success_log.html')
+
 })
 
 
 
+
+// access user database
 app.get('/app/users_db', (req, res) => {
     const stmt = db.prepare(`SELECT * FROM users;`);
     let all = stmt.all();
