@@ -48,21 +48,17 @@ app.get('/app/accmade', (req,res) => {
 app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
-<<<<<<< HEAD
 	//const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     //userDB.exec(stmt)
 	res.sendFile(__dirname + '/views/new-acc-made.html')
 	const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt);
-    res.sendFile(__dirname + '/views/new-acc-made.html')
-=======
-
+    res.sendFile(__dirname + '/views/new-acc-made.html');
     const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
 
     
-	res.sendFile(__dirname + '/views/new-acc-made.html')
->>>>>>> a833b3326ecda8e6f58369330c36b0f55bb99f0a
+	res.sendFile(__dirname + '/views/new-acc-made.html');
 });
 
 // delete account endpoint
