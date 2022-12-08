@@ -34,7 +34,7 @@ try{
     db.exec(sqlInit);
 } catch(error){  
 }
-const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER);`
+const sqlInit2 = `CREATE TABLE data ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, date VARCHAR, description VARCHAR, calories INTEGER, protein INTEGER, carbs INTEGER, fats INTEGER);`
 try{
     db.exec(sqlInit2);
 }
@@ -153,6 +153,7 @@ app.post('/log_meal', (req, res) => {
     const protein = req.body.protein
     const carbs = req.body.carbs
     const fats = req.body.fats
+    const description = req.body.description
 
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed)
@@ -161,7 +162,7 @@ app.post('/log_meal', (req, res) => {
     const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'logged a meal', '${today.toISOString()}');`;
     db.exec(stmt2)
 
-    const stmt = `INSERT INTO data (user, calories, protein, carbs, fats) VALUES ('${user}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
+    const stmt = `INSERT INTO data (user, date, description, calories, protein, carbs, fats) VALUES ('${user}','${today}','${description}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
     db.exec(stmt)
 
     res.sendFile(__dirname + '/views/success_log.html')

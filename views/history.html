@@ -15,6 +15,8 @@
     <div class="text-box">
       <ul>
       <%data.forEach(function(dat) {%>
+        <p>Description: <%= dat.description %></p>
+        <p>Date: <%= dat.date %></p>
       <p>Calories: <%= dat.calories %></p>
       <p>Protein: <%= dat.protein%></p>
       <p>Carbs: <%= dat.carbs%></p>
