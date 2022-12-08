@@ -41,7 +41,7 @@ try{
 
 
 // root endpoint
-app.get('/app/', (req, res) => {
+app.get('/', (req, res) => {
     // this should redirect to a html homepage
     res.sendFile(__dirname + '/views/home.html');
 });
@@ -64,17 +64,23 @@ app.post('/app/createacc', (req,res) => {
     const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
 
-	res.sendFile(__dirname + '/views/new-acc-made.html');
+	res.sendFile(__dirname + '/views/main.html');
 });
 
 // delete account endpoint
-app.get('/app/delete_acc', (req, res) => {
-    // this should redirect to a html homepage
+app.post('/app/app/delete_acc', (req, res) => {
+    const user = req.body.username;
+    const pass = req.body.password;
+    const stmt = `DELETE FROM users WHERE user='${user}' and pass='${pass}';`
+    db.exec(stmt)
+
     res.sendFile(__dirname + '/views/delete_acc.html');
 });
 
+
+
 app.get('/app/users_db', (req, res) => {
-    const stmt = userDB.prepare(`SELECT * FROM users;`);
+    const stmt = db.prepare(`SELECT * FROM users;`);
     let all = stmt.all();
 
     if(all === undefined) {
