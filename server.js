@@ -93,7 +93,7 @@ app.post('/log_meal', (req, res) => {
     const stmt = `INSERT INTO data (user, calories, protein, carbs, fats) VALUES ('${user}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
     db.exec(stmt)
 
-    res.status("success log")
+    res.sendFile(__dirname + '/views/success_log.html')
 
 })
 
