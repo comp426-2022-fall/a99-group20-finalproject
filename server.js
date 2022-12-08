@@ -129,9 +129,10 @@ app.post('/app/createacc', (req,res) => {
 });
 
 // delete account endpoint
-app.post('/app/app/delete_acc', (req, res) => {
-    const user = req.body.username;
-    const pass = req.body.password;
+app.post('/app/delete_acc', (req, res) => {
+    const user = req.app.get('user')
+    //const user = req.body.username;
+    //const pass = req.body.password;
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed)
 
@@ -139,7 +140,25 @@ app.post('/app/app/delete_acc', (req, res) => {
     const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'deleted account', '${today.toISOString()}');`;
     db.exec(stmt2)
 
-    const stmt = `DELETE FROM users WHERE user='${user}' and pass='${pass}';`
+    //const stmt = `DELETE FROM users WHERE user='${user}' and pass='${pass}';`
+    const stmt = `DELETE FROM users WHERE user='${user}';`
+    db.exec(stmt)
+
+    res.sendFile(__dirname + '/views/delete_acc.html');
+});
+app.post('/app/app/delete_acc', (req, res) => {
+    const user = req.app.get('user')
+    //const user = req.body.username;
+    //const pass = req.body.password;
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed)
+
+    //interactions db
+    const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'deleted account', '${today.toISOString()}');`;
+    db.exec(stmt2)
+
+    //const stmt = `DELETE FROM users WHERE user='${user}' and pass='${pass}';`
+    const stmt = `DELETE FROM users WHERE user='${user}';`
     db.exec(stmt)
 
     res.sendFile(__dirname + '/views/delete_acc.html');
