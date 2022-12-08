@@ -3,7 +3,6 @@
 // importing needed items
 import minimist from "minimist"
 import express from 'express'
-import fs from 'fs'
 import path from 'path'
 import {fileURLToPath} from 'url';
 import Database from "better-sqlite3"
@@ -42,7 +41,7 @@ try{
 catch(error){  
 }
 
-const sqlInit3 = `CREATE TABLE logs ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, message VARCHAR, time VARCHAR);`
+const sqlInit3 = `CREATE TABLE interactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR, action VARCHAR, time VARCHAR);`
 try{
     db.exec(sqlInit3);
 } catch(error){  
@@ -78,6 +77,12 @@ app.post('/app', (req, res) => {
 app.post('/login', (req, res) => {
     const user = req.body.username;
     const pass = req.body.password;
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed)
+
+    //interactions db
+    const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'attempted to login', '${today.toISOString()}');`;
+    db.exec(stmt2)
 
     const stmt = db.prepare(`SELECT * FROM users WHERE user='${user}' and pass='${pass}';`);
     let row = stmt.get();
@@ -85,11 +90,19 @@ app.post('/login', (req, res) => {
     if (row === undefined) {
         req.app.set('user', user);
         req.app.set('pass', pass);
+        //interactions db
+        const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'failed to login', '${today.toISOString()}');`;
+        db.exec(stmt2)
+
         res.sendFile(__dirname + '/views/bad_login.html')
         // redirect to bad login page. 
     } else {
         req.app.set('user', user);
         req.app.set('pass', pass);
+        //interactions db
+        const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'successfully logged in', '${today.toISOString()}');`;
+        db.exec(stmt2)
+
         res.sendFile(__dirname + '/views/main.html')
     }
 })
@@ -99,6 +112,12 @@ app.post('/login', (req, res) => {
 app.post('/app/createacc', (req,res) => {
     const user = req.body.username;
     const pass = req.body.password;
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed)
+
+    //interactions db
+    const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'created an account', '${today.toISOString()}');`;
+    db.exec(stmt2)
 
     const stmt = `INSERT INTO users (user, pass) VALUES ('${user}', '${pass}');`;
     db.exec(stmt)
@@ -113,6 +132,13 @@ app.post('/app/createacc', (req,res) => {
 app.post('/app/app/delete_acc', (req, res) => {
     const user = req.body.username;
     const pass = req.body.password;
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed)
+
+    //interactions db
+    const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'deleted account', '${today.toISOString()}');`;
+    db.exec(stmt2)
+
     const stmt = `DELETE FROM users WHERE user='${user}' and pass='${pass}';`
     db.exec(stmt)
 
@@ -128,6 +154,13 @@ app.post('/log_meal', (req, res) => {
     const carbs = req.body.carbs
     const fats = req.body.fats
 
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed)
+
+    //interactions db
+    const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'logged a meal', '${today.toISOString()}');`;
+    db.exec(stmt2)
+
     const stmt = `INSERT INTO data (user, calories, protein, carbs, fats) VALUES ('${user}', '${calories}', '${protein}', '${carbs}', '${fats}');`;
     db.exec(stmt)
 
@@ -136,7 +169,15 @@ app.post('/log_meal', (req, res) => {
 })
 
 app.post('/app/history', (req, res) => {
+    
     const user = req.app.get('user')
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed)
+
+    //interactions db
+    const stmt2 = `INSERT INTO interactions (user, action, time) VALUES ('${user}', 'accessed their history', '${today.toISOString()}');`;
+    db.exec(stmt2)
+
     const stmt = db.prepare(`SELECT * FROM data WHERE user = '${req.app.get('user')}';`);
     let all_data = stmt.all();
     res.render('history.html', {data: all_data})
@@ -160,6 +201,18 @@ app.get('/app/users_db', (req, res) => {
 // access log database
 app.get('/app/logs_db', (req, res) => {
     const stmt = db.prepare(`SELECT * FROM data;`);
+    let all = stmt.all();
+
+    if(all === undefined) {
+        res.send('nothing in db');
+    } else {
+        res.send(all);
+    }
+});
+
+// access log database
+app.get('/app/interactions_db', (req, res) => {
+    const stmt = db.prepare(`SELECT * FROM interactions;`);
     let all = stmt.all();
 
     if(all === undefined) {
